@@ -1,0 +1,14 @@
+.masthead {
+  height: 100vh;
+  min-height: 50px;
+  background-image: url('https://images.macrumors.com/t/1Cc_6-HuM2hg4Hv1uAHdxCnrywY=/2500x/article-new/2023/01/iOS-17-Icon-Mock-Feature-Feature.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 40px;
+}
+
+.container.h-100 {
+  animation-duration: 1s;
+  animation-delay: 0.5s;
+}

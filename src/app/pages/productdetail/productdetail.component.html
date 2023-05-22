@@ -1,0 +1,52 @@
+<div class="container">
+    <h3>Product detail</h3>
+
+    <div class="cart row">
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6 text-center image-detail">
+            <img [src]="product.imgUrl" alt="" class="card-img-top" />
+
+        </div>
+        <div class="col-12 col-md-6 col-lg-6 col-xl-6 border-left">
+
+            <div class="row">
+                <h2 class="text-danger text-justify my-2">
+                    {{ product.name }}
+
+                </h2>
+
+                <div class="d-flex align-items-center">
+                    <span>Thương hiệu: </span>
+                    <h6 class="card-title">Brand: {{ product.brand }}</h6>
+
+                </div>
+                <div class="price text-danger fs-4">
+                    <p class="card-text">Giá: {{ product.price }} $</p>
+
+                </div>
+            </div>
+            <div class="cart-content__note row">
+                <h4>Description:</h4>
+                <p class="card-text">{{product.desc}}</p>
+
+            </div>
+
+
+            <div class="quanlity mt-2">
+                <span>
+                    <div class="buttons_added">
+                        <input class="minus is-form" type="button" value="-" />
+                        <input id="this-item-quantity" aria-label="quantity" class="input-qty" max="10" min="1"
+                            name="quantity" type="number" value="1" required value="1" />
+                        <input class="plus is-form" type="button" value="+" />
+                    </div>
+                </span>
+            </div>
+
+            <a href="#" class="btn btn-primary mt-2">Buy</a>
+
+
+
+
+        </div>
+    </div>
+</div>

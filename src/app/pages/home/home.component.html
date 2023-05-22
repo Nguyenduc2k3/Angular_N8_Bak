@@ -1,0 +1,92 @@
+<!-- Full Page Image Header with Vertically Centered Content -->
+<header class="masthead">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center">
+        <!-- <h1 class="fw-bolder text-white">iPhone 14 Pro Max 1TB</h1>
+          <p class="lead">A great starter layout for a landing page</p> -->
+      </div>
+    </div>
+  </div>
+</header>
+<section class="container mt-5 mb-3 m-auto">
+
+  <h3>Category</h3>
+
+  <div class="row">
+    <div class="col-12 col-md-6 col-xl-3 w-20 mb-5 box-start">
+      <a href="">
+        <img src="https://static.toiimg.com/thumb/resizemode-4,msid-80635329,imgsize-200,width-600,imgv-2/80635329.jpg"
+          alt="" class="category-image">
+      </a>
+      <a class="list-group-item" href="">
+        <p>Danh mục 1</p>
+      </a>
+
+    </div>
+    <div class="col-12 col-md-6 col-xl-3 w-20 mb-5 box-start">
+      <a href="">
+        <img src="https://static.toiimg.com/thumb/resizemode-4,msid-80635329,imgsize-200,width-600,imgv-2/80635329.jpg"
+          alt="" class="category-image">
+      </a>
+      <a class="list-group-item" href="">
+        <p>Danh mục 1</p>
+      </a>
+
+    </div>
+    <div class="col-12 col-md-6 col-xl-3 w-20 mb-5 box-start">
+      <a href="">
+        <img src="https://static.toiimg.com/thumb/resizemode-4,msid-80635329,imgsize-200,width-600,imgv-2/80635329.jpg"
+          alt="" class="category-image">
+      </a>
+      <a class="list-group-item" href="">
+        <p>Danh mục 1</p>
+      </a>
+
+    </div>
+    <div class="col-12 col-md-6 col-xl-3 w-20 mb-5 box-start">
+      <a href="">
+        <img src="https://static.toiimg.com/thumb/resizemode-4,msid-80635329,imgsize-200,width-600,imgv-2/80635329.jpg"
+          alt="" class="category-image">
+      </a>
+      <a class="list-group-item" href="">
+        <p>Danh mục 1</p>
+      </a>
+
+    </div>
+    <div class="col-12 col-md-6 col-xl-3 w-20 mb-5 box-start">
+      <a href="">
+        <img src="https://static.toiimg.com/thumb/resizemode-4,msid-80635329,imgsize-200,width-600,imgv-2/80635329.jpg"
+          alt="" class="category-image">
+      </a>
+      <a class="list-group-item" href="">
+        <p>Danh mục 1</p>
+      </a>
+
+    </div>
+
+
+  </div>
+</section>
+<section id="home-section">
+  <div class="container">
+    <h3>Sale Products</h3>
+
+    <div class="row ">
+      <div class="col-3 mb-4" *ngFor="let product of products">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <a [routerLink]="['/products', product.id]">
+              <img [src]="product.imgUrl" alt="" class="card-img-top" />
+            </a>
+            <h5 class="card-title">{{ product.name }}</h5>
+            <h6 class="card-title">Brand: {{ product.brand }}</h6>
+            <p class="card-text">Giá: {{ product.price }}</p>
+            <!-- pipes -->
+            <a href="#" class="btn btn-primary">Buy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

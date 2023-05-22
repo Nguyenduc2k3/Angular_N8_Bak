@@ -1,0 +1,55 @@
+.container {
+    margin-top: 100px;
+}
+
+.cart {
+    margin-top: 50px;
+}
+
+.image-detail img {
+    width: 500px;
+
+}
+
+.quanlity {
+    margin-top: 2rem;
+}
+
+.buttons_added {
+    display: flex;
+    align-items: center;
+}
+
+.buttons_added input {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    text-align: center;
+    border: 1px solid #ced4da;
+    border-radius: 0;
+}
+
+.buttons_added .input-qty {
+    width: 3rem;
+    height: 2rem;
+    border: none;
+    border-top: 1px solid #ced4da;
+    border-bottom: 1px solid #ced4da;
+    padding: 0.25rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.buttons_added .minus,
+.buttons_added .plus {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.buttons_added .minus {
+    border-radius: 0 0 0 4px;
+}
+
+.buttons_added .plus {
+    border-radius: 0 0 4px 0;
+}
