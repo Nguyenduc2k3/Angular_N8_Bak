@@ -11,7 +11,7 @@ declare var $: any; // Declare the jQuery variable
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   currentPage: number = 1; // Trang hiện tại
   itemsPerPage: number = 12; // Số sản phẩm trên mỗi trang
@@ -60,14 +60,29 @@ export class HomeComponent implements OnInit {
     },
 
   }
-  @ViewChild('carousel', { static: true }) carouselElement!: ElementRef;
+  slideIndex = 0;
 
-  ngOnInit(): void {
-    $(this.carouselElement.nativeElement).carousel({
-      interval: 2000,
-      pause: 'hover',
-      wrap: true
-    });
+  ngOnInit() {
+    this.showSlides();
+  }
+
+  showSlides() {
+    let i;
+    const slides = document.getElementsByClassName("mySlides") as HTMLCollectionOf<HTMLElement>;
+    const dots = document.getElementsByClassName("dot") as HTMLCollectionOf<HTMLElement>;
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    this.slideIndex++;
+    if (this.slideIndex > slides.length) {
+      this.slideIndex = 1;
+    }
+    for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[this.slideIndex - 1].style.display = "block";
+    dots[this.slideIndex - 1].className += " active";
+    setTimeout(() => this.showSlides(), 1500); // Change image every 2 seconds
   }
 
 }
