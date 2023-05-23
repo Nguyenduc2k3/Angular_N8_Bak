@@ -1,11 +1,24 @@
-.masthead {
-  height: 100vh;
-  min-height: 50px;
-  background-image: url('https://images.macrumors.com/t/1Cc_6-HuM2hg4Hv1uAHdxCnrywY=/2500x/article-new/2023/01/iOS-17-Icon-Mock-Feature-Feature.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  margin-bottom: 40px;
+.masthead .container {
+  width: 100%;
+  padding: 10px 20px;
+  margin-top: 80px;
+  display: flex;
+}
+.masthead .container .slidebar{
+  margin-left: 20px;
+}
+.slidebar .banner img{
+  width: 100px;
+  margin-bottom: 5px;
+}
+.slidebar .banner a{
+ float: right;
+ text-decoration: none;
+ color: black;
+}
+.slidebar .banner1 img{
+  width: 100%;
+  margin-bottom: 5px;
 }
 
 .row .justify-content-between {
