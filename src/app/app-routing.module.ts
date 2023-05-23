@@ -10,6 +10,10 @@ import { LayoutAdminComponent } from './layouts/layout-admin/layout-admin.compon
 import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { ProductsComponent } from './pages/admin/products/products.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ServicesComponent } from './pages/services/services.component';
+import { CatalogComponent } from './pages/catalog/catalog.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 const routes: Routes = [
   {
@@ -21,7 +25,14 @@ const routes: Routes = [
       { path: 'products', component: ProductlistComponent },
       { path: 'products/:id', component: ProductdetailComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
+      { path: 'register', component: RegisterComponent },
+      { path: 'about', component: AboutComponent},
+      { path: 'services', component: ServicesComponent},
+      { path: 'catalog', component: CatalogComponent},
+      { path: 'cart', component: CartComponent}
+
+
+
     ],
   },
 

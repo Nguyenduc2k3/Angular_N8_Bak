@@ -1,11 +1,36 @@
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+a {
+  font-size:14px;
+  font-weight:700
+}
+.superNav {
+  font-size:13px;
+}
+.form-control {
+  outline:none !important;
+  box-shadow: none !important;
+}
+@media screen and (max-width:540px){
+  .centerOnMobile {
+    text-align:center
+  }
+}
+.search-input {
+  border: 1px solid #B22830;
 
 }
+.icon-search {
+  background-color: #B22830;
+  border: 1px solid #B22830;
+}
+.btn {
+  border: 1px solid #B22830;
+  background-color: #B22830;
 
-.search {
-  width: 500px;
+}
+.dropdown-menu {
+  display: none;
+}
 
+.dropdown:hover .dropdown-menu {
+  display: block;
 }

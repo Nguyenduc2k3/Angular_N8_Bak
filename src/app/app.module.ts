@@ -25,6 +25,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { AboutComponent } from './pages/about/about.component';
+import { ServicesComponent } from './pages/services/services.component';
+import { CatalogComponent } from './pages/catalog/catalog.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 
 @NgModule({
@@ -44,6 +48,10 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ProductsComponent,
     LayoutComponent,
     NotFoundComponent,
+    AboutComponent,
+    ServicesComponent,
+    CatalogComponent,
+    CartComponent,
 
   ],
   imports: [
