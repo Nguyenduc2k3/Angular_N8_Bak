@@ -9,84 +9,54 @@
     </div>
   </div>
 </header>
-<section class="container mt-5 mb-3 m-auto">
 
-  <h3>Category</h3>
+<h3 class="text-center title-product-sale">Sale Products</h3>
+<owl-carousel-o [options]="customOptions">
+  <ng-template carouselSlide *ngFor="let product of pagedProducts">
+    <div class="container card col-3 mb-4 card-product" style="width: 20rem" (click)="viewProductDetail(product)">
+      <div class="card-body">
+        <a [routerLink]="['/products', product.id]" class="home-link-product-detail">
+          <img [src]="product.imgUrl" alt="" class="card-img-top my-4" />
+          <h5 class="card-title">{{ product.name }}</h5>
+        </a>
+        <h6 class="card-title">Brand: {{ product.brand }}</h6>
+        <p class="card-text price">{{ product.price }} $</p>
 
-  <div class="row">
-    <div class="col-12 col-md-6 col-xl-3 w-20 mb-5 box-start">
-      <a href="">
-        <img src="https://static.toiimg.com/thumb/resizemode-4,msid-80635329,imgsize-200,width-600,imgv-2/80635329.jpg"
-          alt="" class="category-image">
-      </a>
-      <a class="list-group-item" href="">
-        <p>Danh mục 1</p>
-      </a>
-
+      </div>
     </div>
-    <div class="col-12 col-md-6 col-xl-3 w-20 mb-5 box-start">
-      <a href="">
-        <img src="https://static.toiimg.com/thumb/resizemode-4,msid-80635329,imgsize-200,width-600,imgv-2/80635329.jpg"
-          alt="" class="category-image">
-      </a>
-      <a class="list-group-item" href="">
-        <p>Danh mục 1</p>
-      </a>
+  </ng-template>
 
-    </div>
-    <div class="col-12 col-md-6 col-xl-3 w-20 mb-5 box-start">
-      <a href="">
-        <img src="https://static.toiimg.com/thumb/resizemode-4,msid-80635329,imgsize-200,width-600,imgv-2/80635329.jpg"
-          alt="" class="category-image">
-      </a>
-      <a class="list-group-item" href="">
-        <p>Danh mục 1</p>
-      </a>
+</owl-carousel-o>
 
-    </div>
-    <div class="col-12 col-md-6 col-xl-3 w-20 mb-5 box-start">
-      <a href="">
-        <img src="https://static.toiimg.com/thumb/resizemode-4,msid-80635329,imgsize-200,width-600,imgv-2/80635329.jpg"
-          alt="" class="category-image">
-      </a>
-      <a class="list-group-item" href="">
-        <p>Danh mục 1</p>
-      </a>
-
-    </div>
-    <div class="col-12 col-md-6 col-xl-3 w-20 mb-5 box-start">
-      <a href="">
-        <img src="https://static.toiimg.com/thumb/resizemode-4,msid-80635329,imgsize-200,width-600,imgv-2/80635329.jpg"
-          alt="" class="category-image">
-      </a>
-      <a class="list-group-item" href="">
-        <p>Danh mục 1</p>
-      </a>
-
-    </div>
-
-
-  </div>
-</section>
 <section id="home-section">
   <div class="container">
-    <h3>Sale Products</h3>
+    <h3 class="text-center title-product-sale">All Products</h3>
 
-    <div class="row ">
-      <div class="col-3 mb-4" *ngFor="let product of products">
-        <div class="card" style="width: 18rem">
+    <div class="row">
+      <div class="col-3 mb-4" *ngFor="let product of pagedProducts">
+        <div class="card" style="width: 18rem" (click)="viewProductDetail(product)">
           <div class="card-body">
-            <a [routerLink]="['/products', product.id]">
-              <img [src]="product.imgUrl" alt="" class="card-img-top" />
+            <a [routerLink]="['/products', product.id]" class="home-link-product-detail">
+              <img [src]="product.imgUrl" alt="" class="card-img-top my-4" />
+              <h5 class="card-title">{{ product.name }}</h5>
             </a>
-            <h5 class="card-title">{{ product.name }}</h5>
             <h6 class="card-title">Brand: {{ product.brand }}</h6>
-            <p class="card-text">Giá: {{ product.price }}</p>
+            <p class="card-text price">{{ product.price }} $</p>
             <!-- pipes -->
-            <a href="#" class="btn btn-primary">Buy</a>
+            <a href="#" class="btn ">Buy</a>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="pagination">
+      <button class="page-link" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">Previous</button>
+      <button class="page-link" *ngFor="let page of getPageNumbers()" [class.active]="page === currentPage"
+        (click)="goToPage(page)">{{ page }}</button>
+      <button class="page-link" [disabled]="currentPage === totalPages"
+        (click)="goToPage(currentPage + 1)">Next</button>
+    </div>
+
+
   </div>
 </section>
