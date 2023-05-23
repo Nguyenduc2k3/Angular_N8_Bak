@@ -31,6 +31,8 @@ import { CatalogComponent } from './pages/catalog/catalog.component';
 import { CartComponent } from './pages/cart/cart.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +66,8 @@ import { CartComponent } from './pages/cart/cart.component';
     BrowserAnimationsModule,
     RouterModule,
     SlickCarouselModule,
-    CarouselModule
+    CarouselModule,
+
 
 
   ],
