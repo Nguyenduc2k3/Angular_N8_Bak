@@ -3,8 +3,10 @@
 
     <div class="cart row">
         <div class="col-12 col-md-6 col-lg-6 col-xl-6 text-center image-detail">
+            <div class="overlay" (click)="toggleOverlay()">
+                <img [src]="product.imgUrl" alt="Fullscreen Image">
+            </div>
             <img [src]="product.imgUrl" alt="" class="card-img-top" />
-
         </div>
         <div class="col-12 col-md-6 col-lg-6 col-xl-6 border-left">
 
@@ -42,7 +44,7 @@
                 </span>
             </div>
 
-            <a href="#" class="btn btn-primary mt-2">Buy</a>
+            <a href="#" class="btn  mt-2">Buy</a>
 
 
 

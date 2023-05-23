@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+
+
 import { Product } from 'src/app/common/product';
 import { ProductService } from 'src/app/common/product.service';
 
@@ -30,5 +32,10 @@ export class ProductdetailComponent implements OnInit {
         console.log('Không tìm thấy sản phẩm');
       }
     });
+  }
+  isOverlayVisible = false;
+
+  toggleOverlay() {
+    this.isOverlayVisible = !this.isOverlayVisible;
   }
 }

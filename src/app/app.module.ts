@@ -18,6 +18,13 @@ import { ProductsComponent } from './pages/admin/products/products.component';
 import { LayoutComponent } from './layouts/layout/layout.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CommonModule } from '@angular/common';
+import { MatSliderModule } from '@angular/material/slider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { SlickCarouselModule } from 'ngx-slick-carousel';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
@@ -36,12 +43,22 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     ProductsComponent,
     LayoutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    CommonModule,
+    MatSliderModule,
+    BrowserAnimationsModule,
+    RouterModule,
+    SlickCarouselModule,
+    CarouselModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
