@@ -1,0 +1,18 @@
+.title-product-sale {
+    /* border: 1px solid blue; */
+    border-radius: 20px;
+    width: 300px;
+    height: 40px;
+    margin: 40px auto;
+    background-color: #B22830;
+    color: white;
+    font-size: 28px;
+
+}
+
+.btn {
+    background-color: #B22830;
+    color: white;
+    border-radius: 20px;
+
+}

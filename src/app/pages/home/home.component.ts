@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { products } from '../../datas/product';
 import { Product } from '../../common/product';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { CarouselComponent } from 'ngx-owl-carousel-o';
 
-
+declare var $: any; // Declare the jQuery variable
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   currentPage: number = 1; // Trang hiện tại
   itemsPerPage: number = 12; // Số sản phẩm trên mỗi trang
@@ -59,4 +60,14 @@ export class HomeComponent {
     },
 
   }
+  @ViewChild('carousel', { static: true }) carouselElement!: ElementRef;
+
+  ngOnInit(): void {
+    $(this.carouselElement.nativeElement).carousel({
+      interval: 2000,
+      pause: 'hover',
+      wrap: true
+    });
+  }
+
 }

@@ -1,1 +1,32 @@
-<p>cart works!</p>
+<section class="container">
+    <h3 class="text-center title-product-sale">My Cart</h3>
+    <table class="table text-center my-auto">
+        <thead>
+            <tr class="bg-secondary text-light" style="height:30px;width:100%">
+                <th>STT</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Thành tiền</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+
+        <tbody *ngFor="let products of product  let i =index">
+            <tr>
+                <td>{{i+1}}</td>
+                <td><img [src]="products.imgUrl" alt="" style="height:100px"></td>
+                <td>{{ products.name }}</td>
+                <td>{{ products.price }} $</td>
+                <td></td>
+                <td></td>
+                <td><button class="btn btn-danger">Xóa</button></td>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center m-3">
+        <a href=""><input type="button" class="btn btn-primary mx-3" value="Tiếp tục đặt hàng"></a>
+    </div>
+</section>
