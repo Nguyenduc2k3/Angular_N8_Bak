@@ -1,33 +1,31 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, ActivatedRoute } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductdetailComponent } from './pages/productdetail/productdetail.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LayoutComponent } from './layouts/layout/layout.component';
-import { LayoutAdminComponent } from './layouts/layout-admin/layout-admin.component';
-import { DashboardComponent } from './pages/admin/dashboard/dashboard.component';
-import { ProductsComponent } from './pages/admin/products/products.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { AppLayoutComponent } from './layouts/layout-admin/layout/app.layout.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: LayoutComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
+      { path: '', component: HomeComponent },
       { path: 'products/:id', component: ProductdetailComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'about', component: AboutComponent},
-      { path: 'services', component: ServicesComponent},
-      { path: 'catalog', component: CatalogComponent},
-      { path: 'cart', component: CartComponent}
+      { path: 'about', component: AboutComponent },
+      { path: 'services', component: ServicesComponent },
+      { path: 'catalog', component: CatalogComponent },
+      { path: 'cart', component: CartComponent }
 
 
 
@@ -35,26 +33,17 @@ const routes: Routes = [
   },
 
   {
-    path: 'admin',
-    component: LayoutAdminComponent,
+    path: '',
+    component: AppLayoutComponent,
     children: [
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full',
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent,
-      },
-      {
-        path: 'products',
-        component: ProductsComponent,
-
-      }
+      { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
+      { path: 'utilities', loadChildren: () => import('./demo/components/utilities/utilities.module').then(m => m.UtilitiesModule) },
+      { path: 'blocks', loadChildren: () => import('./demo/components/primeblocks/primeblocks.module').then(m => m.PrimeBlocksModule) },
+      { path: 'pages', loadChildren: () => import('./demo/components/pages/pages.module').then(m => m.PagesModule) }
     ]
   },
-
+  { path: 'auth', loadChildren: () => import('./demo/components/auth/auth.module').then(m => m.AuthModule) },
+  { path: 'notfound', component: NotFoundComponent },
   {
     path: '**',
     component: NotFoundComponent,
