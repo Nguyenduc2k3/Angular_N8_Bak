@@ -14,11 +14,11 @@ import { AppLayoutComponent } from './layouts/layout-admin/layout/app.layout.com
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: LayoutComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
       { path: 'products/:id', component: ProductdetailComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
@@ -33,7 +33,7 @@ const routes: Routes = [
   },
 
   {
-    path: '',
+    path: 'admin',
     component: AppLayoutComponent,
     children: [
       { path: '', loadChildren: () => import('./demo/components/dashboard/dashboard.module').then(m => m.DashboardModule) },
