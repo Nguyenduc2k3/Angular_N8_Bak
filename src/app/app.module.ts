@@ -23,8 +23,6 @@ import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import { CartComponent } from './pages/cart/cart.component';
-<<<<<<< Updated upstream
-=======
 import { CountryService } from './demo/service/country.service';
 import { CustomerService } from './demo/service/customer.service';
 import { EventService } from './demo/service/event.service';
@@ -32,8 +30,6 @@ import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import { ProductService } from './demo/service/product.service';
->>>>>>> Stashed changes
-
 
 @NgModule({
   declarations: [
@@ -62,15 +58,8 @@ import { ProductService } from './demo/service/product.service';
     BrowserAnimationsModule,
     RouterModule,
     SlickCarouselModule,
-<<<<<<< Updated upstream
-    CarouselModule
-=======
     CarouselModule,
     AppLayoutModule
-
->>>>>>> Stashed changes
-
-
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
