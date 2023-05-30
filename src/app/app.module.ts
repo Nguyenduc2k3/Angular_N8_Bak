@@ -28,6 +28,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import { CartComponent } from './pages/cart/cart.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -65,6 +66,7 @@ import { CartComponent } from './pages/cart/cart.component';
     RouterModule,
     SlickCarouselModule,
     CarouselModule,
+    HttpClientModule
 
 
 
