@@ -6,7 +6,7 @@
           alt="Sample image">
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form (ngSubmit)="onSubmit()" method="PUT">
+        <form (ngSubmit)="onSubmit()">
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
             <p class="h3 lead fw-normal mb-0 me-3">Sign in with</p>
             <button type="button" class="btn btn-primary btn-floating mx-1">
@@ -28,14 +28,14 @@
 
           <!-- Email input -->
           <div class="form-outline mb-4"> <label class="form-label" for="form3Example3">Email address</label>
-            <input type="email" id="form3Example3" [(ngModel)]="credentials.email" required
+            <input type="email" id="form3Example3" name="email" [(ngModel)]="credentials.email" required
               class="form-control form-control-lg" placeholder="Enter a valid email address" />
           </div>
 
           <!-- Password input -->
           <div class="form-outline mb-3">
             <label class="form-label" for="form3Example4">Password</label>
-            <input type="password" id="form3Example4" [(ngModel)]="credentials.password"
+            <input type="password" id="form3Example4" name="password" [(ngModel)]="credentials.password"
               class="form-control form-control-lg" placeholder="Enter password" />
 
           </div>

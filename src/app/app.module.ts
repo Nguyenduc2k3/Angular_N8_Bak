@@ -30,6 +30,7 @@ import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import { ProductService } from './demo/service/product.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -59,12 +60,13 @@ import { ProductService } from './demo/service/product.service';
     RouterModule,
     SlickCarouselModule,
     CarouselModule,
-    AppLayoutModule
+    AppLayoutModule,
+    HttpClientModule
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-        CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService
+    CountryService, CustomerService, EventService, IconService, NodeService,
+    PhotoService, ProductService
   ],
   bootstrap: [AppComponent]
 })

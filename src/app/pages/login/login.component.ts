@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-
+import { UserService } from 'src/app/datas/user.service';
+import {
+  Router
+} from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,7 +14,25 @@ export class LoginComponent {
     password: '',
   };
 
+  constructor(private userService: UserService, private router: Router) { }
+
   onSubmit() {
-    console.log("thông tin đăng nhập:", this.credentials);
+    console.log("Thông tin đăng nhập:", this.credentials);
+
+    this.userService.login(this.credentials).subscribe(
+      response => {
+        // Xử lý đăng nhập thành công, ví dụ: chuyển hướng trang, lưu thông tin đăng nhập vào LocalStorage, vv.
+        console.log('Đăng nhập thành công:', response);
+        confirm("Đăng nhập thành công");
+        this.router.navigate(["/home"])
+        // Thực hiện chuyển hướng trang đến trang sau khi đăng nhập thành công
+      },
+      error => {
+        // Xử lý lỗi đăng nhập, ví dụ: hiển thị thông báo lỗi, xóa thông tin đăng nhập, vv.
+        console.error('Đăng nhập thất bại:', error);
+        confirm("Đăng nhập thất bại");
+        // Xóa thông tin đăng nhập hoặc thực hiện các xử lý khác khi đăng nhập thất bại
+      }
+    );
   }
 }
