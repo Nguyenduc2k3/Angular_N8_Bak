@@ -23,4 +23,16 @@ export class UserService {
     // Gửi yêu cầu POST tới API đăng nhập
     return this.http.post(loginUrl, credentials);
   }
+  isLoggedIn() {
+    // Kiểm tra xem người dùng đã đăng nhập hay chưa
+    // Điều kiện có thể thay đổi tùy vào cách xác thực của bạn
+    // Ví dụ: Kiểm tra xem có thông tin người dùng trong local storage hay không
+    return !!localStorage.getItem('credentials');
+  }
+
+  logout() {
+    // Xử lý đăng xuất
+    // Ví dụ: Xóa thông tin người dùng khỏi local storage
+    localStorage.removeItem('credentials');
+  }
 }
