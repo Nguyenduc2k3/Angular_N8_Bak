@@ -137,56 +137,12 @@
             <ng-template pTemplate="footer">
                 <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
                     (click)="hideDialog()"></button>
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text"
+                <button pButton pRipple label="Add" icon="pi pi-check" class="p-button-text"
                     (click)="addProduct(product)"></button>
+                <button pButton pRipple label="Update" icon="pi pi-check" class="p-button-text"
+                    (click)="updateProduct(product)"></button>
             </ng-template>
         </p-dialog>
 
-        <p-dialog [(visible)]="deleteProductDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span *ngIf="product">Are you sure you want to delete <b>{{product.name}}</b>?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
-                    (click)="deleteProductDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes"
-                    (click)="confirmDelete()"></button>
-            </ng-template>
-        </p-dialog>
-
-        <p-dialog [(visible)]="deleteProductsDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
-            <div class="flex align-items-center justify-content-center">
-                <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-                <span>Are you sure you want to delete selected products?</span>
-            </div>
-            <ng-template pTemplate="footer">
-                <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No"
-                    (click)="deleteProductsDialog = false"></button>
-                <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Yes"
-                    (click)="confirmDeleteSelected()"></button>
-            </ng-template>
-        </p-dialog>
     </div>
 </div>
-
-<!-- 
-<a routerLink="product-create">Create New</a>
-<div class="container">
-  <div class="row">
-    <div class="col-3">STT</div>
-    <div class="col-3">Name</div>
-    <div class="col-3">Price</div>
-    <div class="col-3">Action</div>
-  </div>
-  <div class="row" *ngFor="let product of products; index as i">
-    <div class="col-3">{{ i + 1 }}</div>
-    <div class="col-3">{{ product.name }}</div>
-    <div class="col-3">{{ product.price }}</div>
-    <div class="col-3 d-flex justify-content-around">
-        <button class="btn" [routerLink]="'product-detail/' + product.id">View Detail</button>
-        <button class="btn btn-danger" (click)="deleteProduct(product.id!)">Xóa</button>
-        <a class="btn btn-warning" [routerLink]="'products-update/' + product.id">Update</a>
-      </div>
-  </div>
-</div> -->
