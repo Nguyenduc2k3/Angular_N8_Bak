@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://127.0.0.1:8088/api/auth/signup'; // Thay đổi thành URL của API Node.js
-  private apiSignin = 'http://127.0.0.1:8088/api/auth/signin'; // Thay đổi thành URL của API Node.js
+  private apiUrl = 'http://localhost:8088/api/auth/signup'; // Thay đổi thành URL của API Node.js
+  private apiSignin = 'http://localhost:8088/api/auth/signin'; // Thay đổi thành URL của API Node.js
 
   constructor(private http: HttpClient) { }
 

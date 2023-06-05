@@ -3,7 +3,8 @@ import { Product } from 'src/app/demo/api/product';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
-
+import { DataService } from 'src/app/datas/data.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
     templateUrl: './crud.component.html',
     providers: [MessageService]
@@ -30,7 +31,7 @@ export class CrudComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private productService: ProductService, private messageService: MessageService) { }
+    constructor(private http: HttpClient,private productService: ProductService, private dataService: DataService, private messageService: MessageService) { }
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);
@@ -65,10 +66,27 @@ export class CrudComponent implements OnInit {
         this.productDialog = true;
     }
 
-    deleteProduct(product: Product) {
-        this.deleteProductDialog = true;
-        this.product = { ...product };
+   deleteProduct(id: string): void {
+  
+  // Show confirmation dialog or perform any necessary checks
+
+    this.dataService.deleteProduct(id)
+        .subscribe(
+        () => {
+            // Deletion successful
+            this.products = this.products.filter(p => p.id !== id);
+            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+        },
+        error => {
+            // Handle deletion error
+            console.error('Error deleting product:', error);
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete product', life: 3000 });
+        }
+        );
+        console.log(this.product);
+        
     }
+
 
     confirmDeleteSelected() {
         this.deleteProductsDialog = false;
@@ -88,7 +106,25 @@ export class CrudComponent implements OnInit {
         this.productDialog = false;
         this.submitted = false;
     }
-
+    fetchProducts(): void {
+        this.productService.getProducts().then(data => this.products = data);
+      }
+    addProduct(product: Product): void {
+        this.http.post('http://localhost:8088/api/products', product)
+          .subscribe(
+            () => {
+              // Product added successfully
+              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Added', life: 3000 });
+              // Optionally, you can fetch the updated product list from the server
+              this.fetchProducts();
+            },
+            (error) => {
+              // Failed to add product
+              console.error('Error adding product:', error);
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to add product', life: 3000 });
+            }
+          );
+      }
     saveProduct() {
         this.submitted = true;
 

@@ -6,7 +6,7 @@ import { Product } from '../common/product';
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'http://127.0.0.1:8088/api/products/'; // Đường dẫn tới API của Node.js
+  private apiUrl = 'http://localhost:8088/api/products/'; // Đường dẫn tới API của Node.js
 
   constructor(private http: HttpClient) { }
 
@@ -26,7 +26,10 @@ export class DataService {
     console.error(errorMessage);
     return throwError(errorMessage);
   }
-
+  getProducts(): Observable<Product[]> {
+    const url = `${this.apiUrl}`;
+    return this.http.get<any>(url);
+  }
   getProduct(id: string): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<any>(url);
@@ -41,8 +44,9 @@ export class DataService {
     return this.http.put<any>(url, product);
   }
 
-  deleteProduct(id: string): Observable<any> {
+  deleteProduct(id: string | undefined): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<any>(url);
   }
+  
 }
