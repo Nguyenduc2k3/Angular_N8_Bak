@@ -3,8 +3,7 @@ interface InventoryStatus {
     value: string;
 }
 export interface Product {
-    id?: string;
-    code?: string;
+    _id?: string;
     name?: string;
     description?: string;
     price?: number;
@@ -13,4 +12,5 @@ export interface Product {
     category?: string;
     image?: string;
     rating?: number;
+    categoryId?: string;
 }

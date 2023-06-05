@@ -1,9 +1,11 @@
+import { products } from './../../../../datas/product';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/demo/api/product';
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
-
+import { DataService } from 'src/app/datas/data.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
     templateUrl: './crud.component.html',
     providers: [MessageService]
@@ -30,7 +32,7 @@ export class CrudComponent implements OnInit {
 
     rowsPerPageOptions = [5, 10, 20];
 
-    constructor(private productService: ProductService, private messageService: MessageService) { }
+    constructor(private http: HttpClient,private productService: ProductService, private dataService: DataService, private messageService: MessageService) { }
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);
@@ -56,68 +58,106 @@ export class CrudComponent implements OnInit {
         this.productDialog = true;
     }
 
-    deleteSelectedProducts() {
-        this.deleteProductsDialog = true;
-    }
 
     editProduct(product: Product) {
         this.product = { ...product };
         this.productDialog = true;
     }
 
-    deleteProduct(product: Product) {
-        this.deleteProductDialog = true;
-        this.product = { ...product };
-    }
-
-    confirmDeleteSelected() {
-        this.deleteProductsDialog = false;
-        this.products = this.products.filter(val => !this.selectedProducts.includes(val));
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Products Deleted', life: 3000 });
-        this.selectedProducts = [];
-    }
-
-    confirmDelete() {
-        this.deleteProductDialog = false;
-        this.products = this.products.filter(val => val.id !== this.product.id);
-        this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-        this.product = {};
-    }
+    deleteProduct(product: Product): void {
+        if(confirm("Bạn chắc chưa???")){
+            const url = `http://localhost:8088/api/products/${product._id}`;
+      
+            this.http.delete(url).subscribe(
+            () => {
+                // Product deleted successfully
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+                // Optionally, you can fetch the updated product list from the server
+                this.fetchProducts();
+            },
+            (error) => {
+                // Failed to delete product
+                console.error('Error deleting product:', error);
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete product', life: 3000 });
+            }
+            );
+            console.log(product);
+        }  
+      }
 
     hideDialog() {
         this.productDialog = false;
         this.submitted = false;
     }
-
-    saveProduct() {
-        this.submitted = true;
-
-        if (this.product.name?.trim()) {
-            if (this.product.id) {
-                // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-                this.products[this.findIndexById(this.product.id)] = this.product;
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-            } else {
-                this.product.id = this.createId();
-                this.product.code = this.createId();
-                this.product.image = 'product-placeholder.svg';
-                // @ts-ignore
-                this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-                this.products.push(this.product);
-                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+    fetchProducts(): void {
+        this.productService.getProducts().then(data => this.products = data);
+      }
+    addProduct(product: Product): void {
+        this.http.post('http://localhost:8088/api/products', product)
+          .subscribe(
+            () => {
+              // Product added successfully
+              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Added', life: 3000 });
+              // Optionally, you can fetch the updated product list from the server
+              this.fetchProducts();
+            },
+            (error) => {
+              // Failed to add product
+              console.error('Error adding product:', error);
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to add product', life: 3000 });
             }
+          );
+          console.log(this.product);
+          
+      }
+      updateProduct(product: Product): void {
+        const { _id, ...productWithoutId } = product;
+        this.http.put(`http://localhost:8088/api/products/${product._id}`, productWithoutId)
+          .subscribe(
+            () => {
+              // Product updated successfully
+              this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+              // Optionally, you can fetch the updated product list from the server
+              this.fetchProducts();
+            },
+            (error) => {
+              // Failed to update product
+              console.error('Error updating product:', error);
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to update product', life: 3000 });
+            }
+          );
+        console.log(product);
+      }
+    
+    // saveProduct() {
+    //     this.submitted = true;
 
-            this.products = [...this.products];
-            this.productDialog = false;
-            this.product = {};
-        }
-    }
+    //     if (this.product.name?.trim()) {
+    //         if (this.product.id) {
+    //             // @ts-ignore
+    //             this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
+    //             this.products[this.findIndexById(this.product.id)] = this.product;
+    //             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
+    //         } else {
+    //             this.product.id = this.createId();
+    //             this.product.code = this.createId();
+    //             this.product.image = 'product-placeholder.svg';
+    //             // @ts-ignore
+    //             this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
+    //             this.products.push(this.product);
+    //             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
+    //         }
+
+    //         this.products = [...this.products];
+    //         this.productDialog = false;
+    //         this.product = {};
+    //     }
+    // }
 
     findIndexById(id: string): number {
         let index = -1;
         for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].id === id) {
+            if (this.products[i]._id === id) {
                 index = i;
                 break;
             }
