@@ -1,3 +1,4 @@
+import { products } from './../../../../datas/product';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/demo/api/product';
 import { MessageService } from 'primeng/api';
@@ -66,26 +67,31 @@ export class CrudComponent implements OnInit {
         this.productDialog = true;
     }
 
-   deleteProduct(id: string): void {
-  
-  // Show confirmation dialog or perform any necessary checks
-
-    this.dataService.deleteProduct(id)
-        .subscribe(
-        () => {
-            // Deletion successful
-            this.products = this.products.filter(p => p.id !== id);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
-        },
-        error => {
-            // Handle deletion error
-            console.error('Error deleting product:', error);
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete product', life: 3000 });
+    deleteProduct(product: Product): void {
+        if(confirm("Bạn chắc chưa???")){
+            const url = `http://localhost:8088/api/products/${product._id}`;
+      
+            this.http.delete(url).subscribe(
+            () => {
+                // Product deleted successfully
+                this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
+                // Optionally, you can fetch the updated product list from the server
+                this.fetchProducts();
+            },
+            (error) => {
+                // Failed to delete product
+                console.error('Error deleting product:', error);
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete product', life: 3000 });
+            }
+            );
+            console.log(product);
         }
-        );
-        console.log(this.product);
         
-    }
+      }
+      
+      
+      
+      
 
 
     confirmDeleteSelected() {
@@ -97,7 +103,7 @@ export class CrudComponent implements OnInit {
 
     confirmDelete() {
         this.deleteProductDialog = false;
-        this.products = this.products.filter(val => val.id !== this.product.id);
+        this.products = this.products.filter(val => val._id !== this.product._id);
         this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Deleted', life: 3000 });
         this.product = {};
     }
@@ -124,18 +130,20 @@ export class CrudComponent implements OnInit {
               this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to add product', life: 3000 });
             }
           );
+          console.log(this.product);
+          
       }
     saveProduct() {
         this.submitted = true;
 
         if (this.product.name?.trim()) {
-            if (this.product.id) {
+            if (this.product._id) {
                 // @ts-ignore
                 this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-                this.products[this.findIndexById(this.product.id)] = this.product;
+                this.products[this.findIndexById(this.product._id)] = this.product;
                 this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
             } else {
-                this.product.id = this.createId();
+                this.product._id = this.createId();
                 this.product.code = this.createId();
                 this.product.image = 'product-placeholder.svg';
                 // @ts-ignore
@@ -153,7 +161,7 @@ export class CrudComponent implements OnInit {
     findIndexById(id: string): number {
         let index = -1;
         for (let i = 0; i < this.products.length; i++) {
-            if (this.products[i].id === id) {
+            if (this.products[i]._id === id) {
                 index = i;
                 break;
             }
