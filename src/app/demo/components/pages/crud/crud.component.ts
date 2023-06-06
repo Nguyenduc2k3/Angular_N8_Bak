@@ -6,6 +6,7 @@ import { Table } from 'primeng/table';
 import { ProductService } from 'src/app/demo/service/product.service';
 import { DataService } from 'src/app/datas/data.service';
 import { HttpClient } from '@angular/common/http';
+
 @Component({
     templateUrl: './crud.component.html',
     providers: [MessageService]
@@ -36,20 +37,6 @@ export class CrudComponent implements OnInit {
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);
-
-        this.cols = [
-            { field: 'product', header: 'Product' },
-            { field: 'price', header: 'Price' },
-            { field: 'category', header: 'Category' },
-            { field: 'rating', header: 'Reviews' },
-            { field: 'inventoryStatus', header: 'Status' }
-        ];
-
-        this.statuses = [
-            { label: 'INSTOCK', value: 'instock' },
-            { label: 'LOWSTOCK', value: 'lowstock' },
-            { label: 'OUTOFSTOCK', value: 'outofstock' }
-        ];
     }
 
     openNew() {
@@ -91,7 +78,7 @@ export class CrudComponent implements OnInit {
     }
     fetchProducts(): void {
         this.productService.getProducts().then(data => this.products = data);
-      }
+    }
     addProduct(product: Product): void {
         this.http.post('http://localhost:8088/api/products', product)
           .subscribe(
@@ -110,6 +97,9 @@ export class CrudComponent implements OnInit {
           console.log(this.product);
           
       }
+
+    
+
       updateProduct(product: Product): void {
         const { _id, ...productWithoutId } = product;
         this.http.put(`http://localhost:8088/api/products/${product._id}`, productWithoutId)
@@ -129,30 +119,6 @@ export class CrudComponent implements OnInit {
         console.log(product);
       }
     
-    // saveProduct() {
-    //     this.submitted = true;
-
-    //     if (this.product.name?.trim()) {
-    //         if (this.product.id) {
-    //             // @ts-ignore
-    //             this.product.inventoryStatus = this.product.inventoryStatus.value ? this.product.inventoryStatus.value : this.product.inventoryStatus;
-    //             this.products[this.findIndexById(this.product.id)] = this.product;
-    //             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Updated', life: 3000 });
-    //         } else {
-    //             this.product.id = this.createId();
-    //             this.product.code = this.createId();
-    //             this.product.image = 'product-placeholder.svg';
-    //             // @ts-ignore
-    //             this.product.inventoryStatus = this.product.inventoryStatus ? this.product.inventoryStatus.value : 'INSTOCK';
-    //             this.products.push(this.product);
-    //             this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Product Created', life: 3000 });
-    //         }
-
-    //         this.products = [...this.products];
-    //         this.productDialog = false;
-    //         this.product = {};
-    //     }
-    // }
 
     findIndexById(id: string): number {
         let index = -1;
