@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/datas/user.service';
 import { Router } from '@angular/router';
-import { DialogService } from 'primeng/dynamicdialog';
-import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-login',
@@ -17,9 +15,7 @@ export class LoginComponent {
 
   constructor(
     private userService: UserService,
-    private router: Router,
-    private dialogService: DialogService,
-    private messageService: MessageService
+    private router: Router
   ) {}
 
   onSubmit() {
