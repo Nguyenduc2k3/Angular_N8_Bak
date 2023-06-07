@@ -31,6 +31,7 @@ import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import { ProductService } from './demo/service/product.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BillComponent } from './pages/bill/bill.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { HttpClientModule } from '@angular/common/http';
     ServicesComponent,
     CatalogComponent,
     CartComponent,
+    BillComponent,
 
   ],
   imports: [

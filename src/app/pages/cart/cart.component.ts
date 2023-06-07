@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
   cartItems: any[] = [];
+  orderItems!: any[];
 
   constructor(private cartService: CartService) { }
 
@@ -26,5 +27,9 @@ export class CartComponent implements OnInit {
   clearCart() {
     this.cartItems = [];
     this.cartService.clearCart();
+  }
+  goToBillingPage() {
+    
+    
   }
 }
