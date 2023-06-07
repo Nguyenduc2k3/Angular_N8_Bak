@@ -11,6 +11,7 @@ import { ServicesComponent } from './pages/services/services.component';
 import { CatalogComponent } from './pages/catalog/catalog.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { AppLayoutComponent } from './layouts/layout-admin/layout/app.layout.component';
+import { BillComponent } from './pages/bill/bill.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'services', component: ServicesComponent },
       { path: 'catalog', component: CatalogComponent },
-      { path: 'cart', component: CartComponent }
+      { path: 'cart', component: CartComponent },
+      {path: 'bill/:id', component: BillComponent}
 
 
 

@@ -80,14 +80,20 @@
         </div>
         <div class="col-12 col-md-6 col-lg-6 col-xl-6">
             <!-- New section -->
-            <div class="additional-info">
+            <!-- <div class="additional-info">
                 <h4>Description</h4>
                 <div class="read-more-content">
-                    <p class="card-text">{{product.desc}}</p>
+                    <p class="card-text">{{product.description}}</p>
                 </div>
                 <input type="checkbox" id="read-more-toggle" class="read-more-toggle">
                 <label for="read-more-toggle" class="read-more-label">Read More</label>
-            </div>
+            </div> -->
+            <div>
+                <h4 id="shortText">Description</h4>
+                <p id="moreText" [hidden]="isHidden">{{product.description}}</p>
+                <a class="read-more"(click)="toggleText()">{{ buttonText }}</a>
+              </div>
+              
         </div>
 
     </div>

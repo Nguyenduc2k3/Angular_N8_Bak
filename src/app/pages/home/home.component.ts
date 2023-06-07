@@ -1,3 +1,4 @@
+import { CartService } from './../../service/cart.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Product } from '../../common/product';
 import { Router } from '@angular/router';
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   currentPage: number = 1; // Trang hiện tại
   itemsPerPage: number = 12; // Số sản phẩm trên mỗi trang
   products: any[] = []; // Danh sách tất cả sản phẩm
-  constructor(private router: Router, private dataService: DataService,) { }
+  constructor(private router: Router, private dataService: DataService,private cartService: CartService) { }
   // ngOnInit() {
   //   this.getProducts();
   // }
@@ -99,4 +100,8 @@ export class HomeComponent implements OnInit {
     setTimeout(() => this.showSlides(), 1500); // Change image every 2 seconds
   }
 
+  addToCart(product: any) {
+    this.cartService.addToCart(product);
+  }
+  
 }

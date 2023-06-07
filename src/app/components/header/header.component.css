@@ -34,3 +34,6 @@ a {
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+.dropdown-item {
+  cursor: pointer;
+}
