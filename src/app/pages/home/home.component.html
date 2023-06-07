@@ -72,6 +72,9 @@
 
 </owl-carousel-o>
 
+
+
+
 <section id="home-section">
   <div class="container">
     <h3 class="text-center title-product-sale">All Products</h3>
@@ -87,8 +90,9 @@
             <h6 class="card-title">Brand: {{ product.brand }}</h6>
             <p class="card-text price">{{ product.price }} $</p>
             <!-- pipes -->
-            <a href="#" class="btn ">Buy</a>
+            <a routerLink="/" class="btn ">Buy</a>
           </div>
+          <button class="btn-" (click)="addToCart(product)">Thêm vào giỏ hàng</button>
         </div>
       </div>
     </div>
