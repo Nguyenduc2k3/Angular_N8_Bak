@@ -71,25 +71,7 @@
   border-radius: 5px;
 }
 
-.additional-info .read-more-content {
-  height: 100px; /* Adjust the height as needed */
-  overflow: hidden;
-  transition: height 0.3s ease;
-}
 
-.additional-info .read-more-toggle {
-  display: none;
-}
-
-.additional-info .read-more-label {
-  display: inline;
-  cursor: pointer;
-  color: #b22830;
-}
-
-.additional-info .read-more-toggle:checked ~ .read-more-content {
-  height: auto;
-}
 
 .bocuc_48 {
   display: block;
@@ -111,5 +93,11 @@
 }
 .bocuc {
   box-sizing: border-box;
+}
+
+.read-more {
+  color: #b22830;
+  cursor: pointer;
+  text-decoration: none;
 }
 

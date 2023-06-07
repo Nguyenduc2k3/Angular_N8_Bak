@@ -44,4 +44,12 @@ export class ProductdetailComponent implements OnInit {
       this.quantity++;
     }
   }
+  isHidden: boolean = true;
+  buttonText: string = 'Read More';
+
+  toggleText() {
+    this.isHidden = !this.isHidden;
+    this.buttonText = this.isHidden ? 'Read More' : 'Read Less';
+  }
+  
 }
