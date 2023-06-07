@@ -2,21 +2,29 @@ import { Injectable } from '@angular/core';
 import { Inject } from '@angular/core';
 
 import { Product } from './product';
-import { products } from '../datas/product';
+
+import { DataService } from '../datas/data.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductService {
-    private products = products
+    products: any[] = []; // Initialize products as an empty array
 
+    constructor(private dataService: DataService) { }
 
-    constructor() {
-        // ...
+    ngOnInit() {
+        this.getProducts();
     }
 
-    getProducts(): Product[] {
-        return this.products;
+    getProducts() {
+        this.dataService.getData().subscribe(
+            (response: any) => {
+                this.products = response.data; // Assign the 'data' property of the response to 'products'
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
     }
-
 }

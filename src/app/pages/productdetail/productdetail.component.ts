@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-
 import { Product } from 'src/app/common/product';
-import { ProductService } from 'src/app/common/product.service';
+import { DataService } from 'src/app/datas/data.service';
+
 
 @Component({
   selector: 'app-productdetail',
@@ -12,6 +12,26 @@ import { ProductService } from 'src/app/common/product.service';
 })
 export class ProductdetailComponent implements OnInit {
   quantity = 1;
+  product!: Product;
+
+  constructor(
+    private route: ActivatedRoute,
+    private dataService: DataService
+  ) { }
+
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      const productId = params.get('id')!;
+      this.dataService.getProduct(productId).subscribe(
+        product => {
+          this.product = product;
+        },
+        error => {
+          console.log('Error retrieving product:', error);
+        }
+      );
+    });
+  }
 
   decreaseQuantity() {
     if (this.quantity > 1) {
@@ -24,29 +44,4 @@ export class ProductdetailComponent implements OnInit {
       this.quantity++;
     }
   }
-
-  product: Product = {} as Product;
-
-  constructor(
-    private route: ActivatedRoute,
-    private productService: ProductService
-  ) { }
-
-  ngOnInit() {
-    
-    this.route.paramMap.subscribe(params => {
-      const productId = params.get('id');
-      const products = this.productService.getProducts();
-      const product = products.find(product => product.id === (productId ? parseInt(productId) : null));
-
-      if (product) {
-        this.product = product;
-      } else {
-        // Xử lý trường hợp không tìm thấy sản phẩm
-        console.log('Không tìm thấy sản phẩm');
-      }
-    });
-    
-  }
-  
 }

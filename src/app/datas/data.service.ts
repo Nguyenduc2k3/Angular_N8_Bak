@@ -30,9 +30,11 @@ export class DataService {
     const url = `${this.apiUrl}`;
     return this.http.get<any>(url);
   }
-  getProduct(id: string): Observable<any> {
+  getProduct(id: string): Observable<Product> {
     const url = `${this.apiUrl}/${id}`;
-    return this.http.get<any>(url);
+    return this.http.get<Product>(url).pipe(
+      catchError(this.handleError)
+    );
   }
 
   createProduct(product: any): Observable<any> {
@@ -48,5 +50,12 @@ export class DataService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<any>(url);
   }
-  
+  searchProductsByName(name: string): Observable<Product[]> {
+    const url = `${this.apiUrl}?name=${name}`;
+    return this.http.get<Product[]>(url).pipe(
+      catchError(this.handleError)
+    );
+  }
+
+
 }

@@ -58,8 +58,8 @@
   <ng-template carouselSlide *ngFor="let product of pagedProducts">
     <div class="container card col-3 mb-4 card-product" style="width: 20rem">
       <div class="card-body">
-        <img [src]="product.imgUrl" alt="" class="card-img-top my-4" />
-        <a [routerLink]="['/products', product.id]" class="home-link-product-detail"
+        <img [src]="product.image" alt="" class="card-img-top my-4" />
+        <a [routerLink]="['/products', product._id]" class="home-link-product-detail"
           (click)="viewProductDetail(product)">
           <h5 class="card-title">{{ product.name }}</h5>
         </a>
@@ -80,8 +80,8 @@
       <div class="col-3 mb-4" *ngFor="let product of pagedProducts">
         <div class="card" style="width: 18rem" (click)="viewProductDetail(product)">
           <div class="card-body">
-            <a [routerLink]="['/products', product.id]" class="home-link-product-detail">
-              <img [src]="product.imgUrl" alt="" class="card-img-top my-4" />
+            <a [routerLink]="['/products', product._id]" class="home-link-product-detail">
+              <img [src]="product.image" alt="" class="card-img-top my-4" />
               <h5 class="card-title">{{ product.name }}</h5>
             </a>
             <h6 class="card-title">Brand: {{ product.brand }}</h6>

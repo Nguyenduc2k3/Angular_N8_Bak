@@ -24,6 +24,7 @@ export class LoginComponent {
         // Xử lý đăng nhập thành công, ví dụ: chuyển hướng trang, lưu thông tin đăng nhập vào LocalStorage, vv.
         console.log('Đăng nhập thành công:', response);
         confirm("Đăng nhập thành công");
+        this.userService.setLoggedIn(true);
         this.router.navigate(["/home"])
         // Thực hiện chuyển hướng trang đến trang sau khi đăng nhập thành công
       },

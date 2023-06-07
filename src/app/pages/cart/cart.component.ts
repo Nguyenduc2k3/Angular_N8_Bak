@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { products } from 'src/app/datas/product';
+// import { products } from 'src/app/datas/product';
 
 @Component({
   selector: 'app-cart',
@@ -7,5 +7,5 @@ import { products } from 'src/app/datas/product';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
-  product = products
+  // product = products
 }

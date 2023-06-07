@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { products } from '../../datas/product';
 import { Product } from '../../common/product';
 import { Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { CarouselComponent } from 'ngx-owl-carousel-o';
+import { DataService } from 'src/app/datas/data.service';
 
 declare var $: any; // Declare the jQuery variable
 @Component({
@@ -11,15 +11,28 @@ declare var $: any; // Declare the jQuery variable
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
   currentPage: number = 1; // Trang hiện tại
   itemsPerPage: number = 12; // Số sản phẩm trên mỗi trang
-  products = products; // Danh sách tất cả sản phẩm
-  constructor(private router: Router) { }
+  products: any[] = []; // Danh sách tất cả sản phẩm
+  constructor(private router: Router, private dataService: DataService,) { }
+  // ngOnInit() {
+  //   this.getProducts();
+  // }
 
+  getProducts() {
+    this.dataService.getData().subscribe(
+      (response: any) => {
+        this.products = response.data; // Assign the 'data' property of the response to 'products'
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
   viewProductDetail(product: Product) {
-    this.router.navigate(['/products', product.id]);
+    this.router.navigate(['/products', product._id]);
   }
   get totalPages(): number {
     return Math.ceil(this.products.length / this.itemsPerPage);
@@ -63,6 +76,7 @@ export class HomeComponent {
   slideIndex = 0;
 
   ngOnInit() {
+    this.getProducts();
     this.showSlides();
   }
 
