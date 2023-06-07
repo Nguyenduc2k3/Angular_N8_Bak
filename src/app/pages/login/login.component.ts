@@ -25,7 +25,16 @@ export class LoginComponent {
         console.log('Đăng nhập thành công:', response);
         confirm("Đăng nhập thành công");
         this.userService.setLoggedIn(true);
-        this.router.navigate(["/home"])
+        console.log("quyền:", response.user.role);
+
+        // Kiểm tra quyền đăng nhập
+        if (response.user.role === 'admin') {
+          // Chuyển hướng sang trang admin
+          this.router.navigate(['/admin']);
+        } else {
+          // Chuyển hướng sang trang người dùng
+          this.router.navigate(['/home']);
+        }
         // Thực hiện chuyển hướng trang đến trang sau khi đăng nhập thành công
       },
       error => {
