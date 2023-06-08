@@ -9,7 +9,6 @@
           <th>Name</th>
           <th>Price</th>
           <th>Quantity</th>
-          <th>Total</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -20,7 +19,6 @@
             <td><img [src]="item.image" alt="" style="height:100px"></td>
             <td>{{ item.name }}</td>
             <td>{{ item.price }} $</td>
-            <td></td>
             <td></td>
             <td>
                 <button [routerLink]="['/bill', item._id]"  class="btn btn-danger" (click)="goToBillingPage()">Mua hàng</button>

@@ -121,3 +121,8 @@ img {
     padding: 0 65px 0 20px;
     color: #777
 }
+.footer {
+    left: 0;
+    bottom: 0;
+    height: 100%;
+}
