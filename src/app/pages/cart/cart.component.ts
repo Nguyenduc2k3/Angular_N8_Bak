@@ -46,11 +46,9 @@ export class CartComponent implements OnInit {
       }
     );
   }
+  
 
-  clearCart() {
-    this.cartItems = [];
-    this.cartService.clearCart();
-  }
+  
   goToBillingPage() {
 
   }

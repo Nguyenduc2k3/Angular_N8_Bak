@@ -18,8 +18,9 @@
             <td>{{ i+1 }}</td>
             <td><img [src]="item.image" alt="" style="height:100px"></td>
             <td>{{ item.name }}</td>
-            <td>{{ item.price }} $</td>
-            <td></td>
+            <td>{{ item.quantity > 1 ? item.price * item.quantity : item.price }} $</td>
+            <td>{{ item.quantity }}</td>
+
             <td>
                 <button [routerLink]="['/bill', item._id]"  class="btn btn-danger" (click)="goToBillingPage()">Mua hàng</button>
                 <button class="btn btn-danger" (click)="removeFromCart(item)">Remove</button>
