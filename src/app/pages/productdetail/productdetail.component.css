@@ -100,4 +100,6 @@
   cursor: pointer;
   text-decoration: none;
 }
-
+#moreText {
+  color: slategrey;
+}

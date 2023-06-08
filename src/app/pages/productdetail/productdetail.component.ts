@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute,Router } from '@angular/router';
 import { Product } from 'src/app/common/product';
 import { DataService } from 'src/app/datas/data.service';
 
@@ -15,7 +14,7 @@ export class ProductdetailComponent implements OnInit {
   product!: Product;
 
   constructor(
-    private route: ActivatedRoute,
+    private route: ActivatedRoute,private router: Router,
     private dataService: DataService
   ) { }
 

@@ -11,7 +11,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LayoutClientComponent } from './components/layouts/layout-client/layout-client.component';
 import { LayoutComponent } from './layouts/layout/layout.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { MatSliderModule } from '@angular/material/slider';
@@ -32,7 +32,7 @@ import { PhotoService } from './demo/service/photo.service';
 import { ProductService } from './demo/service/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BillComponent } from './pages/bill/bill.component';
-
+import { ProductSearchComponent } from './product-search/product-search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +49,7 @@ import { BillComponent } from './pages/bill/bill.component';
     CatalogComponent,
     CartComponent,
     BillComponent,
+    ProductSearchComponent
 
   ],
   imports: [
@@ -63,7 +64,8 @@ import { BillComponent } from './pages/bill/bill.component';
     SlickCarouselModule,
     CarouselModule,
     AppLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

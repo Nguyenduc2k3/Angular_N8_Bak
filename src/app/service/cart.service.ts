@@ -1,35 +1,43 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Cart } from '../common/cart';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  updateCartItems(cartItems: any[]) {
-    throw new Error('Method not implemented.');
-  }
+  private apiUrl = 'http://localhost:8088/api/cart/';
+  
   private cartItems: any[] = [];
 
-  constructor() {
-    // Load cart items from localStorage if available
-    const storedCartItems = localStorage.getItem('cartItems');
-    if (storedCartItems) {
-      this.cartItems = JSON.parse(storedCartItems);
-    }
-  }
+  constructor(private http: HttpClient) {}
 
   addToCart(product: any) {
+    // Add item to the local cartItems array
     this.cartItems.push(product);
-    // Save updated cart items to localStorage
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
+
+    // Make HTTP POST request to add item to the cart API
+    this.http.post('http://localhost:8088/api/cart', product).subscribe(
+      () => {
+        console.log('Product added to cart API successfully!');
+      },
+      (error) => {
+        console.error('Failed to add product to cart API:', error);
+        // Remove the item from the local cartItems array on API failure
+        this.cartItems.pop();
+      }
+    );
   }
 
-  getCartItems() {
-    return this.cartItems;
+  
+
+  getData(): Observable<Cart[]> {
+    return this.http.get<any>(this.apiUrl); // Gửi yêu cầu GET đến API
   }
+
 
   clearCart() {
     this.cartItems = [];
-    // Remove cart items from localStorage
-    localStorage.removeItem('cartItems');
   }
 }

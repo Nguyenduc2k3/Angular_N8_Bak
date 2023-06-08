@@ -22,17 +22,7 @@ export class HeaderComponent {
   products: Product[] = [];
 
   searchProducts() {
-    this.dataService.searchProductsByName(this.searchText).subscribe(
-      (response: any) => {
-        this.products = response.products; // Assuming the API response has a property named 'products' containing the array
-        console.log('Tìm kiếm thành công', this.products);
-      },
-      error => {
-        console.log('Error searching products:', error);
-      }
-    );
+    this.router.navigate(['/search'], { queryParams: { search: this.searchText } });
   }
-
-
-
+  
 }

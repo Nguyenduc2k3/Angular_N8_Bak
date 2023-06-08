@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
-import { Product } from '../common/product';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { Product } from 'src/app/common/product';
 @Injectable({
   providedIn: 'root'
 })
@@ -50,12 +51,32 @@ export class DataService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<any>(url);
   }
-  searchProductsByName(name: string): Observable<Product[]> {
-    const url = `${this.apiUrl}?name=${name}`;
-    return this.http.get<Product[]>(url).pipe(
-      catchError(this.handleError)
-    );
+  // searchProducts(searchQuery: string): Observable<any[]> {
+  //   return this.http.get<any[]>('http://localhost:8088/api/products', { params: { search: searchQuery } })
+  //     .pipe(
+  //       map((response: any) => response.products),
+  //       catchError((error: HttpErrorResponse) => {
+  //         console.error('An error occurred:', error.message);
+  //         return throwError('Something went wrong. Please try again later.');
+  //       })
+  //     );
+  // }
+  searchProducts(searchQuery: string): Observable<any[]> {
+    return this.http.get<any[]>('http://localhost:8088/api/products')
+      .pipe(
+        map(products => {
+          if (!searchQuery) {
+            return products; // Return all products if no search query provided
+          }
+          searchQuery = searchQuery.toLowerCase(); // Convert search query to lowercase for case-insensitive comparison
+          if (!Array.isArray(products)) {
+            return []; // Return empty array if products is not an array
+          }
+          return products.filter(product =>
+            product.name.toLowerCase().includes(searchQuery)
+          );
+        })
+      );
   }
-
 
 }

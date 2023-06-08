@@ -102,7 +102,7 @@
 .btn {
   background-color: #B22830;
   color: white;
-  border-radius: 20px;
+  border-radius: 10px;
 
 }
 
@@ -223,4 +223,19 @@
   to {
     opacity: 1
   }
+}
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  flex: 1;
+  margin-right: 5px;
+}
+
+.btn-add-to-cart {
+  /* flex: 1; */
+  margin-left: 5px;
 }
