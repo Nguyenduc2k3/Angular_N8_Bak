@@ -79,11 +79,19 @@
 <section id="home-section">
   <div class="container">
     <h3 class="text-center title-product-sale">All Products</h3>
+    <div class="filter-container">
+      <h4 class="filter-title">Filter by Price:</h4>
+      <div class="price-filter">
+        <input class="price-input" type="number" [(ngModel)]="minPrice" placeholder="Min Price">
+        <input class="price-input" type="number" [(ngModel)]="maxPrice" placeholder="Max Price">
+        <button class="filter-button" (click)="filterProductsByPrice()">Filter</button>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-3 mb-4" *ngFor="let product of pagedProducts">
         <div class="card" style="width: 18rem">
-          <div class="card-body" (click)="viewProductDetail(product)">
+          <div class="card-body">
             <a [routerLink]="['/products', product._id]" class="home-link-product-detail">
               <img [src]="product.image" alt="" class="card-img-top my-4" />
               <h5 class="card-title">{{ product.name }}</h5>
@@ -92,18 +100,18 @@
             <p class="card-text price">{{ product.price }} $</p>
             <!-- pipes -->
           </div>
-            <div class="button-container">
-              <button [routerLink]="['/bill', product._id]" class="btn">Buy</button>
-              <button class="btn-add-to-cart" (click)="addToCart(product)">
-                <i class="fas fa-shopping-cart"></i>
-              </button>
-            </div>
+          <div class="button-container">
+            <button [routerLink]="['/products', product._id]" class="btn">Detail</button>
+            <button class="btn-add-to-cart" (click)="addToCart(product)">
+              <i class="fas fa-shopping-cart"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
-    
-    
-    
+
+
+
 
     <div class="pagination">
       <button class="page-link" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">Previous</button>

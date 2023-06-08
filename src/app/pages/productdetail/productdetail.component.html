@@ -52,7 +52,7 @@
             </div>
 
 
-            <button routerLink="/" class="btn mt-2">Buy</button>
+            <button (click)="addToCart(product)" class="btn mt-2">Buy</button>
             <div class="bocuc bocuc_48 dtct_module">
                 <div class="loprong">
                     <div class="header"><span class="header_text">Địa chỉ mua hàng</span></div>
@@ -91,9 +91,9 @@
             <div>
                 <h4 id="shortText">Description</h4>
                 <p id="moreText" [hidden]="isHidden">{{product.description}}</p>
-                <a class="read-more"(click)="toggleText()">{{ buttonText }}</a>
-              </div>
-              
+                <a class="read-more" (click)="toggleText()">{{ buttonText }}</a>
+            </div>
+
         </div>
 
     </div>

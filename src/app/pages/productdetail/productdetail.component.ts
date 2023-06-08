@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/common/product';
 import { DataService } from 'src/app/datas/data.service';
+import { CartService } from 'src/app/service/cart.service';
 
 
 @Component({
@@ -14,8 +15,9 @@ export class ProductdetailComponent implements OnInit {
   product!: Product;
 
   constructor(
-    private route: ActivatedRoute,private router: Router,
-    private dataService: DataService
+    private route: ActivatedRoute, private router: Router,
+    private dataService: DataService,
+    private cartService: CartService
   ) { }
 
   ngOnInit() {
@@ -50,5 +52,9 @@ export class ProductdetailComponent implements OnInit {
     this.isHidden = !this.isHidden;
     this.buttonText = this.isHidden ? 'Read More' : 'Read Less';
   }
-  
+  addToCart(product: any) {
+    this.cartService.addToCart(product);
+    window.alert("You have added " + product.name + " to your cart!");
+    this.router.navigate(['/cart'])
+  }
 }
